@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
-# @Descri: face_recongnition
-# @Author: LUXP
-# Date: 2018-04-27
+## implement face recognition by using face_recognition library
 
 import face_recognition as FR
 import cv2

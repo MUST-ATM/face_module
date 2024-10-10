@@ -1,4 +1,3 @@
-from torchvision.io import read_image
 import torch
 import torchvision.transforms as transforms
 from dassl.utils import  set_random_seed
@@ -102,17 +101,21 @@ def main(args):
     trainer = build_trainer(cfg)
     trainer.load_model(args.model_dir, epoch=args.load_epoch)
     transform = transforms.Compose([
-        transforms.Resize([300,300]),
         transforms.Resize([224,224]),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711]),
         
  ])
-    input = trainer.model_inference(transform(args.img).unsqueeze(0).to(trainer.device))
-    
-    result = F.softmax(input, 1)
-    result = result.data.cpu().numpy()
-    return result
+    img = transform(args.img)
+    pre_input = {"frame":img.unsqueeze(0),
+             "label":torch.tensor(0),
+             "text":"none"}
+    input,label = trainer.parse_batch_test(pre_input)
+    output = trainer.model_inference(input)
+    threshold = 1
+    probabilities = torch.softmax(output, dim=1)
+    print(probabilities.data.cpu().numpy()[0][1])
+    return probabilities.data.cpu().numpy()[0][1] >= threshold
     
 def faceAntiSpoofingByPath(path):
     parser = argparse.ArgumentParser()

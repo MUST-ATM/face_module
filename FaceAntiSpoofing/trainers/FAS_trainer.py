@@ -465,7 +465,7 @@ class SimpleTrainerFAS(TrainerBase):
         for batch_idx, batch in enumerate(tqdm(data_loader)):
             input, label = self.parse_batch_test(batch)
             output = self.model_inference(input)
-            self.evaluator.process(output, label)
+            self.evaluator.process(output, label,input)
 
         results = self.evaluator.evaluate(split, thr, eval_only)
 

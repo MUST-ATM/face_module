@@ -1,3 +1,3 @@
 from FaceAntiSpoofing import faceAntiSpoofingByPath
 
-print(faceAntiSpoofingByPath("images/ShuheDong.jpg"))
+print(faceAntiSpoofingByPath("images/spoof_BoyunWang.jpg"))

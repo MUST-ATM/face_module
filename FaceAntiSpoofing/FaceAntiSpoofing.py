@@ -112,7 +112,7 @@ def main(args):
              "text":"none"}
     input,label = trainer.parse_batch_test(pre_input)
     output = trainer.model_inference(input)
-    threshold = 1
+    threshold = 0.8198
     probabilities = torch.softmax(output, dim=1)
     print(probabilities.data.cpu().numpy()[0][1])
     return probabilities.data.cpu().numpy()[0][1] >= threshold
@@ -126,7 +126,7 @@ def faceAntiSpoofingByPath(path):
     parser.add_argument("--trainer", type=str, default="CLIP")
     parser.add_argument("--version", type=str, default="VL")
     parser.add_argument("--prompt", type=str, default="class")
-    parser.add_argument("--model_dir", type=str, default="/data/mahui/UniAttackData/output//CLIP@class/vit_b16/p1@UniAttack@UniAttack@UniAttack/seed1/")
+    parser.add_argument("--model_dir", type=str, default="/data/mahui/UniAttackData/output//CLIP@class/vit_b16/p2.2@Physical@Physical@Digital/seed1/")
     parser.add_argument("--USE_CUDA", type=bool, default=True)
     parser.add_argument("--dataset_config_file", type=str, default="configs/datasets/UniAttackData.yaml")
     parser.add_argument("--config_file", type=str, default="configs/trainers/CLIP/vit_b16.yaml")

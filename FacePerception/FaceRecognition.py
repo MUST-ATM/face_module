@@ -5,8 +5,8 @@ import cv2
 import os
 import pickle
 
-FolderName = 'FacePerception/FaceDatabase'
-
+FolderName = "FacePerception/Images"
+Database = "FacePerception/FaceDatabase/"
 ## Encoding all faces in the specified folder
 def EncodingFolder(FolderName):
 	Faces_encodings = []
@@ -70,8 +70,8 @@ def newFace(image:str,name:str):
 	cv2.imwrite(NewFaceFile, image[top:bottom, left:right])
 	Faces_names, Faces_encodings = EncodingFolder(FolderName)
 	print('Faces Loaded: \n', sorted(Faces_names))
-	WriteIntoFile('pk_FacesName.pk', Faces_names)
-	WriteIntoFile('pk_FacesEncoding.pk', Faces_encodings)
+	WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
+	WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
 
 ## Write encoding-faces into file
 def WriteIntoFile(filename, pk_data):
@@ -87,28 +87,28 @@ def ReadFromFile(filename):
 
 def faceRecognitionByByte(byte):
 	## Encoding all faces in the specified folder
-	if os.path.exists('pk_FacesName.pk'):
-		Faces_names = ReadFromFile('pk_FacesName.pk')
-		Faces_encodings = ReadFromFile('pk_FacesEncoding.pk')
+	if os.path.exists(Database+'pk_FacesName.pk'):
+		Faces_names = ReadFromFile(Database+'pk_FacesName.pk')
+		Faces_encodings = ReadFromFile(Database+'pk_FacesEncoding.pk')
 	else:
 		Faces_names, Faces_encodings = EncodingFolder(FolderName)
 		print('Faces Loaded: \n', sorted(Faces_names))
-		WriteIntoFile('pk_FacesName.pk', Faces_names)
-		WriteIntoFile('pk_FacesEncoding.pk', Faces_encodings)
+		WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
+		WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
 	image = cv2.imdecode(byte, cv2.IMREAD_COLOR)
 	## Detect Faces and Recognize
 	return DetectAndRecognize(Faces_names, Faces_encodings, image)
 
 def faceRecognitionByPath(path):
 	## Encoding all faces in the specified folder
-	if os.path.exists('pk_FacesName.pk'):
-		Faces_names = ReadFromFile('pk_FacesName.pk')
-		Faces_encodings = ReadFromFile('pk_FacesEncoding.pk')
+	if os.path.exists(Database+'pk_FacesName.pk'):
+		Faces_names = ReadFromFile(Database+'pk_FacesName.pk')
+		Faces_encodings = ReadFromFile(Database+'pk_FacesEncoding.pk')
 	else:
 		Faces_names, Faces_encodings = EncodingFolder(FolderName)
 		print('Faces Loaded: \n', sorted(Faces_names))
-		WriteIntoFile('pk_FacesName.pk', Faces_names)
-		WriteIntoFile('pk_FacesEncoding.pk', Faces_encodings)
+		WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
+		WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
 	
 	image = cv2.imread(path)
 	## Detect Faces and Recognize

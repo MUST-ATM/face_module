@@ -1,12 +1,14 @@
 #!/bin/bash
 # custom config
 
+
 GPU_IDS='5'
 DATASET=UniAttackData
 DATA=/data/mahui/UniAttackData/UniAttackData
 PROTOCOL=p2.1@Digital@Digital@Physical
 PREPROCESS=resize_crop_rotate_flip   ### resize_crop_rotate_flip_ColorJitter
 OUTPUT=/data/mahui/UniAttackData/output/
+
 TRAINER=CLIP
 VERSION=VL         # V or VL
 PROMPT=class  # class, engineering, ensembling

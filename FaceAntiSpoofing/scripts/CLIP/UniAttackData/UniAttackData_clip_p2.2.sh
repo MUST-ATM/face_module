@@ -3,10 +3,12 @@
 
 GPU_IDS='2'
 DATASET=UniAttackData
+
 DATA=/data/mahui/UniAttackData/UniAttackData
 PROTOCOL=p2.2@Physical@Physical@Digital
 PREPROCESS=resize_crop_rotate_flip   ### resize_crop_rotate_flip_ColorJitter
 OUTPUT=~/bywang/code/0_UAD_Baseline-VL/output/CLIP-VL
+
 TRAINER=CLIP
 VERSION=VL         # V or VL
 PROMPT=class  # class, engineering, ensembling

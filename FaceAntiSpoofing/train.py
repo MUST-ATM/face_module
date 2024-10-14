@@ -94,7 +94,9 @@ def extend_cfg(cfg):
     cfg.TRAINER.COOP.CTX_INIT = ""  # initialization words
     cfg.TRAINER.COOP.PREC = "amp"  # fp16, fp32, amp
     cfg.TRAINER.COOP.CLASS_TOKEN_POSITION = "end"  # 'middle' or 'end' or 'front'
+
     cfg.interface = False
+
 def setup_cfg(args):
     cfg = get_cfg_default()
     extend_cfg(cfg)
@@ -112,6 +114,7 @@ def setup_cfg(args):
 
     # 4. From optional input arguments
     cfg.merge_from_list(args.opts)
+
     
     if args.inference:
         cfg.inference = True
@@ -140,8 +143,9 @@ def main(args):
 
     trainer = build_trainer(cfg)
 
-    # #########
+
     #args.eval_only = True
+
     if args.eval_only:
         trainer.load_model(args.model_dir, epoch=args.load_epoch)
         _, thr_val = trainer.test(eval_only=True, split="val", thr=None)
@@ -150,7 +154,7 @@ def main(args):
 
     if not args.no_train:
         trainer.train()
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -193,6 +197,7 @@ if __name__ == "__main__":
     parser.add_argument("--head", type=str, default="", help="name of head")
     parser.add_argument("--eval-only", action="store_true", help="evaluation only")
     parser.add_argument("--inference", action="store_true", help="inference mode")
+
     parser.add_argument(
         "--model-dir",
         type=str,

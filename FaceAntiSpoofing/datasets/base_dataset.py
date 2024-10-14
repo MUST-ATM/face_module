@@ -42,6 +42,7 @@ class DatumXY:
 
 def folder_txt2list(root, protocols, stage, img_index):
     # get data from txt
+
     with open(os.path.join(root, 'Protocol', protocols, stage + '.txt'), 'r') as f:
         lines = f.readlines()
     lines_ = []

@@ -30,7 +30,7 @@ class FAS_Classification(EvaluatorBase):
         self._y_true = []
         self._y_pred = []
 
-    def process(self, mo, gt):
+    def process(self, mo, gt,input):
         # mo (torch.Tensor): model output [batch, num_classes]
         # gt (torch.LongTensor): ground truth [batch]
         pred = mo.max(1)[1]

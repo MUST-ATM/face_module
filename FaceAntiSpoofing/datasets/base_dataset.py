@@ -42,7 +42,8 @@ class DatumXY:
 
 def folder_txt2list(root, protocols, stage, img_index):
     # get data from txt
-    with open(os.path.join(root, 'Protocol-1fake_0live', protocols, stage + '.txt'), 'r') as f:
+
+    with open(os.path.join(root, 'Protocol', protocols, stage + '.txt'), 'r') as f:
         lines = f.readlines()
     lines_ = []
     for line in lines:
@@ -102,7 +103,7 @@ def folder_txt2list(root, protocols, stage, img_index):
     
 def img_txt2list(root, protocols, stage):
     # get data from txt
-    with open(os.path.join(root, 'Protocol-1fake_0live', protocols, stage + '.txt')) as f:
+    with open(os.path.join(root, 'Protocol', protocols, stage + '.txt')) as f:
         lines = f.readlines()
         f.close()
     lines_ = []

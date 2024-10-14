@@ -144,7 +144,10 @@ class CLIP(TrainerFAS):
         image_features = clip_model.encode_image(XY_R)
         image_features = image_features / image_features.norm(dim=-1, keepdim=True)
         if text_features is None:
-            text_descriptions = [f"This is a image of a {label} face" for label in self.classnames]
+            try:
+                text_descriptions = [f"This is a image of a {label} face" for label in self.classnames]
+            except:
+                text_descriptions = ["This is a image of a live face", "This is a image of a fake face"]
             prompts = clip.tokenize(text_descriptions).to(self.device)
             text_features = clip_model.encode_text(prompts)
             text_features = text_features / text_features.norm(dim=-1, keepdim=True)

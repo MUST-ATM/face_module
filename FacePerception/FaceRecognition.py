@@ -52,11 +52,16 @@ def DetectAndRecognize(KnownNameList, KnownEncodingList, image):
 
 
 
-def newFace(image,name):
+def newFace(image:str,name:str):
+	"""
+	Store the new face into the specified folder
+	Args:
+		image: The path of image file
+		name: The specific name of the face
+	"""
 	######### Face_Recognition and Matching #############
 	# Find all the faces and face encodings in the current frame of video
 	face_locations = FR.face_locations(image)
-	face_encodings = FR.face_encodings(image, face_locations)
 	top = face_locations[0][0]
 	right = face_locations[0][1]
 	bottom = face_locations[0][2]
@@ -90,7 +95,7 @@ def faceRecognitionByByte(byte):
 		print('Faces Loaded: \n', sorted(Faces_names))
 		WriteIntoFile('pk_FacesName.pk', Faces_names)
 		WriteIntoFile('pk_FacesEncoding.pk', Faces_encodings)
-	image = cv2.imdecode(byte, cv2.IMREAD_COLOR) 
+	image = cv2.imdecode(byte, cv2.IMREAD_COLOR)
 	## Detect Faces and Recognize
 	return DetectAndRecognize(Faces_names, Faces_encodings, image)
 
@@ -105,7 +110,7 @@ def faceRecognitionByPath(path):
 		WriteIntoFile('pk_FacesName.pk', Faces_names)
 		WriteIntoFile('pk_FacesEncoding.pk', Faces_encodings)
 	
-	image = cv2.imread(path) 
+	image = cv2.imread(path)
 	## Detect Faces and Recognize
 	return DetectAndRecognize(Faces_names, Faces_encodings, image)
 

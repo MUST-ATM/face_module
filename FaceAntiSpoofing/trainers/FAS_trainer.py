@@ -318,13 +318,16 @@ class SimpleTrainerFAS(TrainerBase):
         self.start_epoch = self.epoch = 0
         self.max_epoch = cfg.OPTIM.MAX_EPOCH
         self.output_dir = cfg.OUTPUT_DIR
-
-        self.cfg = cfg
-        self.build_data_loader()
-        self.build_model()
-        self.evaluator = build_evaluator(cfg, lab2cname=self.lab2cname)
-        self.best_result = np.inf
-
+        if cfg.inference:
+            self.cfg = cfg
+            self.build_model()
+            self.best_result = np.inf
+        else:
+            self.cfg = cfg
+            self.build_data_loader()
+            self.build_model()
+            self.evaluator = build_evaluator(cfg, lab2cname=self.lab2cname)
+            self.best_result = np.inf
     def check_cfg(self, cfg):
         """Check whether some variables are set correctly for
         the trainer (optional).
@@ -462,7 +465,7 @@ class SimpleTrainerFAS(TrainerBase):
         for batch_idx, batch in enumerate(tqdm(data_loader)):
             input, label = self.parse_batch_test(batch)
             output = self.model_inference(input)
-            self.evaluator.process(output, label)
+            self.evaluator.process(output, label,input)
 
         results = self.evaluator.evaluate(split, thr, eval_only)
 

@@ -15,7 +15,9 @@ INPUT:
 OPTIM:
   NAME: "adam"
   LR: 0.00001
-  MAX_EPOCH: 500
+
+  MAX_EPOCH: 200
+
   LR_SCHEDULER: "cosine"
 
 TRAIN:

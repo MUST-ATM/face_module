@@ -7,5 +7,42 @@ This module is part of the project `MUST-ATM` and is responsible for the face de
 ## Requirements
 - Python >=3.6
 - OpenCV >=3.4.2
-- Numpy >=1.16.2
+- Numpy >=1.16.2 or <=1.26.4
 - Dlib >=19.16.0
+- Dassl.pytorch >=0.6.3
+- scipy <=1.11.4
+## Installation exclusive Face-AntiSpoofing
+
+```bash
+mamba install face_recognition
+pip install opencv-python
+```
+## Face-AntiSpoofing based CLIP
+```bash
+git clone https://github.com/KaiyangZhou/Dassl.pytorch.git
+cd Dassl.pytorch/
+pip install -r requirements.txt
+python setup.py install
+pip install matplotlib
+```
+## Checkpoint
+Temporary, we provide a checkpoint based rn50 backbone.
+
+We will update vit_16 soon.
+
+OnDrive Download: [Link](https://1drv.ms/u/c/3e4ad39ec12f7a33/Ea23JGPiYbBGlQ26Xv2JQzMByGAq5QHF1t-9ubWvKkP7Cg?e=e8dVIf)
+## Train the Face-AntiSpoofing Module
+TBD...
+
+You need a Uniattack datasets to do the train, but currently I could not provide to you.
+If you really want to train the model, please contact to me.
+
+Check the ```FaceAntiSpoofing/scripts``` folder if you already have the Uniattack datasets.
+
+At least it works on my machine.
+
+## About our Face-AntiSpoofing Module
+The Face Anti-Spoofing module is not fully opensource according to some reason, please alternate it to other OpenSource if you need.
+
+## Alternative Anti-Spoofing Module
+The only thing that you have to change is make ```FaceAntiSpoofing.FaceAntiSpoofing.py``` could return a ```Boolean``` type when you input a image.

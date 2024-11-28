@@ -5,12 +5,12 @@ from dassl.utils import setup_logger, set_random_seed, collect_env_info
 from dassl.config import get_cfg_default
 from dassl.engine import build_trainer
 
-import datasets.UniAttackData
-import datasets.JFSFDB
-import util.evaluator
+import app.face_module.FaceAntiSpoofing.Datasets.UniAttackData
+import app.face_module.FaceAntiSpoofing.Datasets.JFSFDB
+import app.face_module.FaceAntiSpoofing.util.evaluator
 
-import trainers.coop
-import trainers.clip
+import app.face_module.FaceAntiSpoofing.trainers.coop
+import app.face_module.FaceAntiSpoofing.trainers.clip
 
 def print_args(args, cfg):
     print("***************")

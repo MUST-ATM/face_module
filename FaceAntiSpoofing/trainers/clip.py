@@ -10,10 +10,10 @@ from dassl.engine import TRAINER_REGISTRY
 from dassl.utils import load_pretrained_weights, load_checkpoint
 from dassl.optim import build_optimizer, build_lr_scheduler
 from dassl.data.datasets import build_dataset
-from clip import clip
+from ..clip import clip
 
-from trainers.FAS_trainer import TrainerFAS
-from util.utils_FAS import cross_entropy
+from .FAS_trainer import TrainerFAS
+from ..util.utils_FAS import cross_entropy
 
 @TRAINER_REGISTRY.register()
 class CLIP(TrainerFAS):

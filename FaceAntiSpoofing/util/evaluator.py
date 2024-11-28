@@ -1,5 +1,5 @@
 from collections import OrderedDict
-import util.utils_FAS as utils
+from ..util import utils_FAS as utils
 from dassl.evaluation import EvaluatorBase
 from dassl.evaluation.build import EVALUATOR_REGISTRY
 import torch.nn.functional as F

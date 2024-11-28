@@ -5,8 +5,8 @@ import cv2
 import os
 import pickle
 
-FolderName = "FacePerception/Images"
-Database = "FacePerception/FaceDatabase/"
+FolderName = "C:\misc\API\images"
+Database = r"C:\misc\API\backend\app\face_module\FacePerception\FaceDatabase"
 ## Encoding all faces in the specified folder
 def EncodingFolder(FolderName):
 	Faces_encodings = []
@@ -116,5 +116,5 @@ def faceRecognitionByPath(path):
 
 ## main function
 if __name__ == '__main__':
-	newFace(cv2.imread('D:/PythonCode/Face-module/FacePerception/HaomingZou.jpg'), 'HaomingZou')
+	newFace(cv2.imread('C:/misc/API/backend/capture2.jpg'), 'shuheDONG')
 	#print(faceRecognitionByPath(img_path='D:/PythonCode/Face-module/FacePerception/HaomingZou.jpg'))

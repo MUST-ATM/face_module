@@ -5,17 +5,16 @@ from dassl.config import get_cfg_default
 from dassl.engine import build_trainer
 import argparse
 
-from .trainers import clip
-from .datasets import UniAttackData
-from .util.evaluator import FAS_Classification
+from app.face_module.FaceAntiSpoofing.trainers.clip import clip
+from Datasets import UniAttackData
+from app.face_module.FaceAntiSpoofing.util.evaluator import FAS_Classification
 
 from PIL import Image
 import torch.nn.functional as F
 
 
 
-__model__ = "/data/mahui/UniAttackData/output/CLIP-VL/CLIP@class/vit_b16/p1@UniAttack@UniAttack@UniAttack/seed1/CLIP@VL/checkpoint.pth"
-
+__model__ = "app/face_module/FaceAntiSpoofing/model/"
 def reset_cfg(cfg, args):
     if args.root:
         cfg.DATASET.ROOT = args.root
@@ -117,6 +116,7 @@ def main(args):
     threshold = 0.8198
     probabilities = torch.softmax(output, dim=1)
     print(probabilities.data.cpu().numpy()[0][1])
+    print(probabilities.data.cpu().numpy()[0][1] >= threshold)
     if(probabilities.data.cpu().numpy()[0][1] >= threshold):
         return True
     else:
@@ -131,10 +131,10 @@ def faceAntiSpoofingByPath(path):
     parser.add_argument("--trainer", type=str, default="CLIP")
     parser.add_argument("--version", type=str, default="VL")
     parser.add_argument("--prompt", type=str, default="class")
-    parser.add_argument("--model_dir", type=str, default="/data/mahui/UniAttackData/output//CLIP@class/vit_b16/p2.2@Physical@Physical@Digital/seed1/")
+    parser.add_argument("--model_dir", type=str, default=f"{__model__}")
     parser.add_argument("--USE_CUDA", type=bool, default=True)
-    parser.add_argument("--dataset_config_file", type=str, default="C:/misc/API/backend/app/face_module/FaceAntiSpoofing/configs/datasets/UniAttackData.yaml")
-    parser.add_argument("--config_file", type=str, default="C:/misc/API/backend/app/face_module/FaceAntiSpoofing/configs/trainers/CLIP/rn50.yaml")
+    parser.add_argument("--dataset_config_file", type=str, default="app/face_module/FaceAntiSpoofing/configs/Datasets/UniAttackData.yaml")
+    parser.add_argument("--config_file", type=str, default="app/face_module/FaceAntiSpoofing/configs/trainers/CLIP/rn50.yaml")
     parser.add_argument("--seed", type=int, default=1, help="only positive value enables a fixed seed")
     parser.add_argument("--backbone", type=str, default="", help="name of CNN backbone")
     parser.add_argument("--head", type=str, default="", help="name of head")

@@ -185,8 +185,7 @@ class TrainerBase:
             model_file = "model.pth.tar-" + str(epoch)
 
         for name in names:
-            model_path = "C:\misc\model\model-best.pth.tar"
-            # model_path = osp.join(directory, name, model_file)
+            model_path = osp.join(directory, name, model_file)
 
             if not osp.exists(model_path):
                 raise FileNotFoundError(f"No model at {model_path}")

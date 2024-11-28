@@ -15,7 +15,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 import numpy as np
 import torchvision.transforms.functional as F
-from ..util.utils_FAS import check_if_exist
+from util.utils_FAS import check_if_exist
 import torch.nn as nn
 
 def get_params(resize, crop_size, degrees=180):

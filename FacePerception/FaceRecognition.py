@@ -5,8 +5,8 @@ import cv2
 import os
 import pickle
 
-FolderName = "C:\misc\API\images"
-Database = r"C:\misc\API\backend\app\face_module\FacePerception\FaceDatabase"
+FOLDER_NAME = "app/images"
+DATABASE = "app/face_module/FacePerception/Database"
 ## Encoding all faces in the specified folder
 def EncodingFolder(FolderName):
 	Faces_encodings = []
@@ -66,12 +66,12 @@ def newFace(image:str,name:str):
 	right = face_locations[0][1]
 	bottom = face_locations[0][2]
 	left = face_locations[0][3]
-	NewFaceFile = FolderName + '/' + str(name) + '.png'
+	NewFaceFile = FOLDER_NAME + '/' + str(name) + '.png'
 	cv2.imwrite(NewFaceFile, image[top:bottom, left:right])
-	Faces_names, Faces_encodings = EncodingFolder(FolderName)
+	Faces_names, Faces_encodings = EncodingFolder(FOLDER_NAME)
 	print('Faces Loaded: \n', sorted(Faces_names))
-	WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
-	WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
+	WriteIntoFile(DATABASE + 'pk_FacesName.pk', Faces_names)
+	WriteIntoFile(DATABASE + 'pk_FacesEncoding.pk', Faces_encodings)
 
 ## Write encoding-faces into file
 def WriteIntoFile(filename, pk_data):
@@ -87,28 +87,28 @@ def ReadFromFile(filename):
 
 def faceRecognitionByByte(byte):
 	## Encoding all faces in the specified folder
-	if os.path.exists(Database+'pk_FacesName.pk'):
-		Faces_names = ReadFromFile(Database+'pk_FacesName.pk')
-		Faces_encodings = ReadFromFile(Database+'pk_FacesEncoding.pk')
+	if os.path.exists(DATABASE + 'pk_FacesName.pk'):
+		Faces_names = ReadFromFile(DATABASE + 'pk_FacesName.pk')
+		Faces_encodings = ReadFromFile(DATABASE + 'pk_FacesEncoding.pk')
 	else:
-		Faces_names, Faces_encodings = EncodingFolder(FolderName)
+		Faces_names, Faces_encodings = EncodingFolder(FOLDER_NAME)
 		print('Faces Loaded: \n', sorted(Faces_names))
-		WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
-		WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
+		WriteIntoFile(DATABASE + 'pk_FacesName.pk', Faces_names)
+		WriteIntoFile(DATABASE + 'pk_FacesEncoding.pk', Faces_encodings)
 	image = cv2.imdecode(byte, cv2.IMREAD_COLOR)
 	## Detect Faces and Recognize
 	return DetectAndRecognize(Faces_names, Faces_encodings, image)
 
 def faceRecognitionByPath(path):
 	## Encoding all faces in the specified folder
-	if os.path.exists(Database+'pk_FacesName.pk'):
-		Faces_names = ReadFromFile(Database+'pk_FacesName.pk')
-		Faces_encodings = ReadFromFile(Database+'pk_FacesEncoding.pk')
+	if os.path.exists(DATABASE + 'pk_FacesName.pk'):
+		Faces_names = ReadFromFile(DATABASE + 'pk_FacesName.pk')
+		Faces_encodings = ReadFromFile(DATABASE + 'pk_FacesEncoding.pk')
 	else:
-		Faces_names, Faces_encodings = EncodingFolder(FolderName)
+		Faces_names, Faces_encodings = EncodingFolder(FOLDER_NAME)
 		print('Faces Loaded: \n', sorted(Faces_names))
-		WriteIntoFile(Database+'pk_FacesName.pk', Faces_names)
-		WriteIntoFile(Database+'pk_FacesEncoding.pk', Faces_encodings)
+		WriteIntoFile(DATABASE + 'pk_FacesName.pk', Faces_names)
+		WriteIntoFile(DATABASE + 'pk_FacesEncoding.pk', Faces_encodings)
 	
 	image = cv2.imread(path)
 	## Detect Faces and Recognize
@@ -116,5 +116,5 @@ def faceRecognitionByPath(path):
 
 ## main function
 if __name__ == '__main__':
-	newFace(cv2.imread('C:/misc/API/backend/capture2.jpg'), 'shuheDONG')
-	#print(faceRecognitionByPath(img_path='D:/PythonCode/Face-module/FacePerception/HaomingZou.jpg'))
+	newFace(cv2.imread('path'), 'name0')
+	#print(faceRecognitionByPath(img_path='D:/PythonCode/Face-module/Database/HaomingZou.jpg'))

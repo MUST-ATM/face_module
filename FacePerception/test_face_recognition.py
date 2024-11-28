@@ -4,13 +4,13 @@ import numpy as np
 
 
 def test_face_recognition_by_path():
-    image_path = "C:/misc/API/backend/capture2.jpg"  
+    image_path = "app/images/capture.jpg"
     result = faceRecognitionByPath(image_path)
     print(f"Recognition result by path: {result}")
 
 def test_face_recognition_by_byte():
 
-    image = cv2.imread("C:/misc/API/backend/capture2.jpg")
+    image = cv2.imread("app/images/capture.jpg")
     _, byte_image = cv2.imencode('.jpg', image)
     
     byte_image = np.frombuffer(byte_image, np.uint8)  

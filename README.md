@@ -24,8 +24,13 @@ cd Dassl.pytorch/
 pip install -r requirements.txt
 python setup.py install
 pip install matplotlib
-
 ```
+## Checkpoint
+Temporary, we provide a checkpoint based rn50 backbone.
+
+We will update vit_16 soon.
+
+OnDrive Download: [Link](https://1drv.ms/u/c/3e4ad39ec12f7a33/Ea23JGPiYbBGlQ26Xv2JQzMByGAq5QHF1t-9ubWvKkP7Cg?e=e8dVIf)
 ## Train the Face-AntiSpoofing Module
 TBD...
 

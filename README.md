@@ -37,7 +37,7 @@ TBD...
 You need a Uniattack datasets to do the train, but currently I could not provide to you.
 If you really want to train the model, please contact to me.
 
-Check the ```FaceAntiSpoofing/scripts``` folder if you already have the Uniattack datasets.
+Check the ```FaceAntiSpoofing/scripts``` folder if you already have the ```Uniattack``` datasets.
 
 At least it works on my machine.
 

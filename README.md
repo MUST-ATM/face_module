@@ -30,8 +30,8 @@ pip install matplotlib
  **Rn50**: [OnDrive](https://1drv.ms/u/c/3e4ad39ec12f7a33/Ea23JGPiYbBGlQ26Xv2JQzMByGAq5QHF1t-9ubWvKkP7Cg?e=e8dVIf)
  **Vit-16**:[OnDrive](https://studentmust-my.sharepoint.com/:u:/g/personal/1220026920_student_must_edu_mo/EZid5Fsa0h5JgXvPE5ER36gBVMOJClhqVLVx7m1DVa7iXQ?e=0Uc0zy)
 ## Train the Face-AntiSpoofing Module
-You need a **Uniattack datasets** to do the train, but currently I could not provide to you.
-If you really want to train the model, please contact to me.
+You have to prepare a **Uniattack datasets** to train this model, but here is not part of Unittack work, also we do not have a direct relationship. So I could not provide this dataset to you. 
+If you want to train the model, please contact me.
 
 Check the ```FaceAntiSpoofing/scripts``` folder if you already have the ```Uniattack``` datasets.
 
